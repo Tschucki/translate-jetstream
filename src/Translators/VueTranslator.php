@@ -33,8 +33,6 @@ class VueTranslator implements TemplateTranslator
 
     public function setTranslations(array $translations): void
     {
-        // sort the translations by key length, so that the longest keys are translated first
-
         uksort($translations, static function ($a, $b) {
             return strlen($b) <=> strlen($a);
         });
@@ -44,9 +42,6 @@ class VueTranslator implements TemplateTranslator
 
     public function translate(): void
     {
-        // pass the file content through a pipeline of translation methods
-        // at the end of the pipeline, the file content is written back to the file with setFileContent()
-
         $translationTransporter = new TranslationTransporter(
             $this->getTranslations(),
             $this->getFileContent()
