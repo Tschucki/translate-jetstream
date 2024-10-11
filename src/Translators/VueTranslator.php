@@ -5,9 +5,14 @@ namespace Tschucki\TranslateJetstream\Translators;
 use Illuminate\Pipeline\Pipeline;
 use Symfony\Component\Finder\SplFileInfo;
 use Tschucki\TranslateJetstream\Contracts\TemplateTranslator;
+use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateButtonContent;
 use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateComponentContent;
+use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateElementPlaceholders;
 use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateElementTitles;
 use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateElementValues;
+use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateInlineText;
+use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateLangPlaceholdersText;
+use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateSpecialComponentContent;
 use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateVuePropDefaults;
 use Tschucki\TranslateJetstream\Transporters\TranslationTransporter;
 
@@ -60,7 +65,10 @@ class VueTranslator implements TemplateTranslator
             TranslateComponentContent::class,
             TranslateElementValues::class,
             TranslateElementTitles::class,
+            TranslateElementPlaceholders::class,
             TranslateVuePropDefaults::class,
+            TranslateSpecialComponentContent::class,
+            TranslateInlineText::class,
         ];
     }
 

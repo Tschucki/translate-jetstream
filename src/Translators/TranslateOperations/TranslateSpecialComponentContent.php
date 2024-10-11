@@ -6,11 +6,11 @@ use Closure;
 use Tschucki\TranslateJetstream\Contracts\TranslateOperation;
 use Tschucki\TranslateJetstream\Transporters\TranslationTransporter;
 
-class TranslateComponentContent implements TranslateOperation
+class TranslateSpecialComponentContent implements TranslateOperation
 {
     public function getPattern(): string
     {
-        return '/(<[^>]+>)([^<]*)(<\/[^>]+>)/';
+        return '/>([^<]+)</';
     }
 
     public function handle(TranslationTransporter $translationTransporter, Closure $next)
@@ -29,21 +29,19 @@ class TranslateComponentContent implements TranslateOperation
     {
         return preg_replace_callback(
             $this->getPattern(),
-            function ($matches) use ($translations) {
-                $element = $matches[1];
-                $elementContent = $matches[2];
-                $closingTag = $matches[3];
+            static function ($matches) use ($translations) {
+                $text = trim($matches[1]);
 
-                $elementContent = $this->translateContent($elementContent, $translations);
+                // Preserve line breaks before and after the text
+                $textWithLineBreaks = str_replace("\n", "\\n", $text);
 
-                if (array_key_exists(trim($elementContent), $translations)) {
-                    $elementContent = $translations[trim($elementContent)];
+                if (array_key_exists($textWithLineBreaks, $translations)) {
+                    return '>' . str_replace("\\n", "\n", $translations[$textWithLineBreaks]) . '<';
                 }
 
-                return $element . $elementContent . $closingTag;
+                return $matches[0];
             },
             $content
         );
     }
 }
-
