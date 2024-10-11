@@ -55,7 +55,7 @@ class TranslateJetstreamCommand extends Command
             return basename($directory);
         })->toArray();
 
-        return select('Select a locale to translate', $locales, 'de');
+        return select('Select a locale to translate', $locales, config('app.locale'));
     }
 
     protected function displayInfo($stack, $locale): void

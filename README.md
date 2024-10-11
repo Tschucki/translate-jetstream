@@ -1,60 +1,49 @@
-# This package translates jetstream
+# Translate your Jetstream Inertia Templates Using Regex
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/tschucki/translate-jetstream.svg?style=flat-square)](https://packagist.org/packages/tschucki/translate-jetstream)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/tschucki/translate-jetstream/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/tschucki/translate-jetstream/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/tschucki/translate-jetstream/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/tschucki/translate-jetstream/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/tschucki/translate-jetstream.svg?style=flat-square)](https://packagist.org/packages/tschucki/translate-jetstream)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+![Marcel Wagner Translate Jetstream](https://preview.dragon-code.pro/Marcel%20Wagner/Translate%20Jetstream.svg?brand=laravel&mode=auto)
 
-## Support us
+Translate Jetstream's Vue templates into any language you want. Without much effort.
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/translate-jetstream.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/translate-jetstream)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+It annoyed me that Jetstream's Vue templates are not translated. Sometimes I need Jetstream in a language other than English and I didn't want to translate everything by hand.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require tschucki/translate-jetstream
+composer require --dev tschucki/translate-jetstream
 ```
 
-You can publish and run the migrations with:
+I recommend to only use this package in a local development environment and a fresh installation of Jetstream.
 
-```bash
-php artisan vendor:publish --tag="translate-jetstream-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="translate-jetstream-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="translate-jetstream-views"
-```
+You better commit your changes before running the command, so you can easily revert them if something feels wrong.
 
 ## Usage
 
-```php
-$translateJetstream = new Tschucki\TranslateJetstream();
-echo $translateJetstream->echoPhrase('Hello, Tschucki!');
+### Basic Usage
+
+Call the following command to select the language you want to translate Jetstream into:
+
+```bash
+php artisan jetstream:translate
 ```
+
+You will be asked for the language you want to translate Jetstream into. The default language is your locale set in your Laravel application.
+
+### Locale as Argument
+
+You can also pass the locale as an argument:
+
+```bash
+php artisan jetstream:translate de
+```
+
+## Demo
 
 ## Testing
 

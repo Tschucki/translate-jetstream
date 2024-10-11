@@ -15,6 +15,10 @@
             "role": "Developer"
         }
     ],
+    "support": {
+        "issues": "https://github.com/Tschucki/translate-jetstream/issues",
+        "source": "https://github.com/Tschucki/translate-jetstream"
+    },
     "require": {
         "php": "^8.2",
         "spatie/laravel-package-tools": "^1.16",
