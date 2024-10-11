@@ -19,7 +19,7 @@
         "php": "^8.2",
         "spatie/laravel-package-tools": "^1.16",
         "illuminate/contracts": "^10.0||^11.0",
-        "laravel-lang/lang": "^15.5"
+        "laravel-lang/lang": "^14.0||^15.5"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
