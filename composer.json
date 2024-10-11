@@ -18,7 +18,8 @@
     "require": {
         "php": "^8.2",
         "spatie/laravel-package-tools": "^1.16",
-        "illuminate/contracts": "^10.0||^11.0"
+        "illuminate/contracts": "^10.0||^11.0",
+        "laravel-lang/lang": "^15.5"
     },
     "require-dev": {
         "laravel/pint": "^1.14",
@@ -34,8 +35,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Tschucki\\TranslateJetstream\\": "src/",
-            "Tschucki\\TranslateJetstream\\Database\\Factories\\": "database/factories/"
+            "Tschucki\\TranslateJetstream\\": "src/"
         }
     },
     "autoload-dev": {
