@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Tschucki\TranslateJetstream\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class TranslateJetstreamCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'translate-jetstream';
 
     public $description = 'My command';
 
