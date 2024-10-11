@@ -1,10 +1,15 @@
 {
     "name": "tschucki/translate-jetstream",
-    "description": "This package translates jetstream",
+    "description": "Translate Jetstream's Vue templates into any language you want",
+    "version": "1.0.0",
     "keywords": [
         "Marcel Wagner",
         "laravel",
-        "translate-jetstream"
+        "translate-jetstream",
+        "jetstream",
+        "translate jetstream templates",
+        "translating jetstream templates",
+        "auto translation laravel jetstream"
     ],
     "homepage": "https://github.com/tschucki/translate-jetstream",
     "license": "MIT",
