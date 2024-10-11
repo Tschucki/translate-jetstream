@@ -5,6 +5,7 @@ namespace Tschucki\TranslateJetstream\Transporters;
 class TranslationTransporter
 {
     private array $translations;
+
     private string $fileContent;
 
     public function __construct(array $translations, string $fileContent)

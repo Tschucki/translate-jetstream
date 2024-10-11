@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Tschucki\TranslateJetstream\Translators\VueTranslator;
+
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\note;
@@ -17,8 +18,11 @@ class TranslateJetstreamCommand extends Command
 {
     public $signature = 'jetstream:translate {locale?}';
 
-    public $description = 'My command';
+    public $description = 'Translate Jetstream to a specific locale';
 
+    /**
+     * @throws \JsonException
+     */
     public function handle(): int
     {
         $stack = config('jetstream.stack');
@@ -29,17 +33,17 @@ class TranslateJetstreamCommand extends Command
 
         $this->prepareTranslations($locale);
 
-
         $translations = json_decode(file_get_contents(base_path("lang/{$locale}.json")), true, 512, JSON_THROW_ON_ERROR);
 
         match ($stack) {
             'inertia' => $this->translateInertia($translations),
+            default => error('The stack is not supported'),
         };
 
         return 1;
     }
 
-    protected function getLocale()
+    protected function getLocale(): int|bool|array|string
     {
         $locale = $this->argument('locale');
 
@@ -54,39 +58,44 @@ class TranslateJetstreamCommand extends Command
         return select('Select a locale to translate', $locales, 'de');
     }
 
-    protected function displayInfo($stack, $locale)
+    protected function displayInfo($stack, $locale): void
     {
         note("You have chosen to translate Jetstream to the {$locale} locale using the {$stack} stack.");
     }
 
-    protected function prepareTranslations($locale)
+    protected function prepareTranslations($locale): void
     {
         if (File::exists(base_path("lang/{$locale}.json"))
             &&
-            confirm("The {$locale} locale already exists. Do you want to update it?")) {
-            info("Updating your locale from laravel-lang");
-            $code = Artisan::call('lang:update');
-            if ($code === 0) {
-                info("Locale updated successfully");
+            confirm("The $locale locale already exists. Do you want to update it?")) {
+
+            info('Updating your locale from laravel-lang');
+
+            $exitCode = Artisan::call('lang:update');
+
+            if ($exitCode === 0) {
+                info('Locale updated successfully');
             } else {
-                error("An error occurred while updating the locale");
+                error('An error occurred while updating the locale');
             }
-        } else if (confirm('The locale does not exist. Do you want to create it?')) {
-            info("Adding your locale from laravel-lang");
-            $code = Artisan::call('lang:add', ['locales' => $locale]);
-            if ($code === 0) {
-                info("Locale added successfully");
+
+        } elseif (confirm('The locale does not exist. Do you want to create it?')) {
+            info('Adding your locale from laravel-lang');
+
+            $exitCode = Artisan::call('lang:add', ['locales' => $locale]);
+
+            if ($exitCode === 0) {
+                info('Locale added successfully');
             } else {
-                error("An error occurred while adding the locale");
+                error('An error occurred while adding the locale');
             }
         }
     }
 
-    protected function translateInertia($translations)
+    protected function translateInertia($translations): void
     {
-        $finder = new Finder();
-        $finder->files()->in(resource_path("js"))->name('*.vue');
-
+        $finder = new Finder;
+        $finder->files()->in(resource_path('js'))->name('*.vue');
 
         $this->withProgressBar($finder, function (SplFileInfo $file) use ($translations) {
             $translator = new VueTranslator($file, $translations);

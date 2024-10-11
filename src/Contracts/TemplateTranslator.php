@@ -2,7 +2,6 @@
 
 namespace Tschucki\TranslateJetstream\Contracts;
 
-use Illuminate\Support\Facades\File;
 use Symfony\Component\Finder\SplFileInfo;
 
 interface TemplateTranslator
@@ -28,5 +27,5 @@ interface TemplateTranslator
 
     public function getTranslationPipes(): array;
 
-    function translate(): void;
+    public function translate(): void;
 }

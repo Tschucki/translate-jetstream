@@ -36,7 +36,7 @@ class TranslateInlineText implements TranslateOperation
                 $suffix = $matches[4];
 
                 if (array_key_exists($text, $translations)) {
-                    return '>' . $leadingSpace . $translations[$text] . $trailingSpace . $suffix;
+                    return '>'.$leadingSpace.$translations[$text].$trailingSpace.$suffix;
                 }
 
                 return $matches[0];

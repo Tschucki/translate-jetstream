@@ -33,10 +33,10 @@ class TranslateSpecialComponentContent implements TranslateOperation
                 $text = trim($matches[1]);
 
                 // Preserve line breaks before and after the text
-                $textWithLineBreaks = str_replace("\n", "\\n", $text);
+                $textWithLineBreaks = str_replace("\n", '\\n', $text);
 
                 if (array_key_exists($textWithLineBreaks, $translations)) {
-                    return '>' . str_replace("\\n", "\n", $translations[$textWithLineBreaks]) . '<';
+                    return '>'.str_replace('\\n', "\n", $translations[$textWithLineBreaks]).'<';
                 }
 
                 return $matches[0];

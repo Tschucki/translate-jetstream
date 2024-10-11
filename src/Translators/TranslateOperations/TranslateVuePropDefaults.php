@@ -22,6 +22,7 @@ class TranslateVuePropDefaults implements TranslateOperation
             $this->getPattern(),
             static function ($matches) use ($translations) {
                 $translation = $translations[$matches[2]] ?? null;
+
                 return $translation ? "default: '{$translation}'" : $matches[0];
             },
             $fileContent

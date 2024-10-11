@@ -22,6 +22,7 @@
         "laravel-lang/lang": "^15.5"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "laravel/pint": "^1.14",
         "nunomaduro/collision": "^8.1.1||^7.10.0",
         "larastan/larastan": "^2.9",

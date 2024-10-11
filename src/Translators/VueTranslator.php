@@ -5,13 +5,11 @@ namespace Tschucki\TranslateJetstream\Translators;
 use Illuminate\Pipeline\Pipeline;
 use Symfony\Component\Finder\SplFileInfo;
 use Tschucki\TranslateJetstream\Contracts\TemplateTranslator;
-use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateButtonContent;
 use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateComponentContent;
 use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateElementPlaceholders;
 use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateElementTitles;
 use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateElementValues;
 use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateInlineText;
-use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateLangPlaceholdersText;
 use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateSpecialComponentContent;
 use Tschucki\TranslateJetstream\Translators\TranslateOperations\TranslateVuePropDefaults;
 use Tschucki\TranslateJetstream\Transporters\TranslationTransporter;
@@ -19,6 +17,7 @@ use Tschucki\TranslateJetstream\Transporters\TranslationTransporter;
 class VueTranslator implements TemplateTranslator
 {
     public array $translations;
+
     public SplFileInfo $file;
 
     public function __construct(SplFileInfo $file, array $translations)
@@ -56,7 +55,7 @@ class VueTranslator implements TemplateTranslator
         app(abstract: Pipeline::class)
             ->send($translationTransporter)
             ->through($this->getTranslationPipes())
-            ->then(fn(TranslationTransporter $translationTransporter) => $this->setFileContent($translationTransporter->getFileContent()));
+            ->then(fn (TranslationTransporter $translationTransporter) => $this->setFileContent($translationTransporter->getFileContent()));
     }
 
     public function getTranslationPipes(): array

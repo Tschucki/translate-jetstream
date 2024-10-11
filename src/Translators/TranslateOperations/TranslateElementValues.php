@@ -29,7 +29,7 @@ class TranslateElementValues implements TranslateOperation
                     $value = $translations[$value];
                 }
 
-                return $element . 'value="' . $value . '"' . $matches[4];
+                return $element.'value="'.$value.'"'.$matches[4];
             },
             $fileContent
         );

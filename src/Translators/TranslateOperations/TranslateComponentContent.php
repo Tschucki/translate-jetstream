@@ -40,10 +40,9 @@ class TranslateComponentContent implements TranslateOperation
                     $elementContent = $translations[trim($elementContent)];
                 }
 
-                return $element . $elementContent . $closingTag;
+                return $element.$elementContent.$closingTag;
             },
             $content
         );
     }
 }
-

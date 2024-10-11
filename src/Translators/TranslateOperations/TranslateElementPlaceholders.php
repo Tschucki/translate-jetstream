@@ -28,7 +28,7 @@ class TranslateElementPlaceholders implements TranslateOperation
                     $value = $translations[$value];
                 }
 
-                return $element . 'placeholder="' . $value . '"' . $matches[4];
+                return $element.'placeholder="'.$value.'"'.$matches[4];
             },
             $fileContent
         );
