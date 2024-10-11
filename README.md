@@ -45,6 +45,12 @@ php artisan jetstream:translate de
 
 ## Demo
 
+
+
+https://github.com/user-attachments/assets/f35bef80-b922-4d67-80da-9586fcf2456d
+
+
+
 ## Testing
 
 ```bash
